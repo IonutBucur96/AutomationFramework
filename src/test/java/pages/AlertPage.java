@@ -9,23 +9,20 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class AlertPage {
-
-    public WebDriver driver;
+public class AlertPage extends BasePage{
 
     public AlertPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(css = ".nav-stacked>li>a")
-    public List<WebElement> alertOptions;
+    private List<WebElement> alertOptions;
     @FindBy(css = ".btn-danger")
-    public WebElement clickAlertOkElement;
+    private WebElement clickAlertOkElement;
     @FindBy(css = ".btn-primary")
-    public WebElement clickOkCancelElement;
+    private WebElement clickOkCancelElement;
     @FindBy(css = ".btn-info")
-    public WebElement clickTextElement;
+    private WebElement clickTextElement;
 
     public void dealAlertOk(){
         alertOptions.get(0).click();

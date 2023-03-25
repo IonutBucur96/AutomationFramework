@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 public class SignInPage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
@@ -17,13 +17,13 @@ public class SignInPage {
     }
 
     @FindBy(css = "input[placeholder='E mail']")
-    public WebElement emailElement;
+    private WebElement emailElement;
     @FindBy(css = "input[placeholder='Password']")
-    public WebElement passwordElement;
+    private WebElement passwordElement;
     @FindBy(id = "enterbtn")
-    public WebElement enterElement;
+    private WebElement enterElement;
     @FindBy(id = "errormsg")
-    public WebElement errorElement;
+    private WebElement errorElement;
 
     public void loginInvalid(String emailValue, String passwordValue, String expectedError){
         emailElement.sendKeys(emailValue);

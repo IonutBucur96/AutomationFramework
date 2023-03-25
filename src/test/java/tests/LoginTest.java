@@ -1,39 +1,20 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.IndexPage;
 import pages.SignInPage;
+import sharedData.SharedData;
 
-public class LoginTest {
-    public WebDriver driver;
+public class LoginTest extends SharedData {
 
     @Test
     public void metodaTest(){
-        //ca sa fixez eroarea Internal server 403
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        //trebuie sa setam driverul de chrome
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
-        //deschidem un browser
-        driver=new ChromeDriver(chromeOptions);
-        //accesam un URL
-        driver.get("https://demo.automationtesting.in/Index.html");
-        driver.manage().window().maximize();
-
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSignIn();
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.loginInvalid("ionut.bucur@test.com","Parola123","Invalid User Name or PassWord");
     }
-
-    //adaug validari de pagina pentru restul testelor
 
 
 }

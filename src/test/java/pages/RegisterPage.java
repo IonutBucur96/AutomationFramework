@@ -9,55 +9,52 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegisterPage {
-
-    public WebDriver driver;
+public class RegisterPage extends BasePage {
 
     public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(xpath = "//a[text()='SwitchTo']")
-    public WebElement switchToElement;
+    private WebElement switchToElement;
     @FindBy(xpath = "//a[text()='Frames']")
-    public WebElement frameElement;
+    private WebElement frameElement;
     @FindBy(xpath = "//a[text()='Windows']")
-    public WebElement windowsElement;
+    private WebElement windowsElement;
     @FindBy(xpath = "//a[text()='Alerts']")
-    public WebElement alertsElement;
+    private WebElement alertsElement;
     @FindBy(css = "input[placeholder='First Name']")
-    public WebElement firstName;
+    private WebElement firstName;
     @FindBy(css = "input[placeholder='Last Name']")
-    public WebElement lastName;
+    private WebElement lastName;
     @FindBy(css = "textarea[ng-model='Adress']")
-    public WebElement adress;
+    private WebElement adress;
     @FindBy(css = "input[ng-model='EmailAdress']")
-    public WebElement emailAdress;
+    private WebElement emailAdress;
     @FindBy(css = "input[type='tel']")
-    public WebElement phoneNumber;
+    private WebElement phoneNumber;
     @FindBy(xpath = "//input[@value='Male']")
-    public WebElement maleGender;
+    private WebElement maleGender;
     @FindBy(id = "checkbox1")
-    public WebElement hobbyElement;
+    private WebElement hobbyElement;
     @FindBy(id = "msdd")
-    public WebElement languageElement;
+    private WebElement languageElement;
     @FindBy(id = "Skills")
-    public WebElement skillsElement;
+    private WebElement skillsElement;
     @FindBy(id = "yearbox")
-    public WebElement yearElement;
+    private WebElement yearElement;
     @FindBy(css = "select[placeholder='Month']")
-    public WebElement monthElement;
+    private WebElement monthElement;
     @FindBy (css = ".select2-selection")
-    public WebElement selectCountryElement;
+    private WebElement selectCountryElement;
     @FindBy (className = "select2-search__field")
-    public WebElement selectCountryInputElement;
+    private WebElement selectCountryInputElement;
     @FindBy(id = "firstpassword")
-    public WebElement passwordElement;
+    private WebElement passwordElement;
     @FindBy(id = "secondpassword")
-    public WebElement confirmPassword;
+    private WebElement confirmPassword;
     @FindBy (id = "submitbtn")
-    public WebElement submitElement;
+    private WebElement submitElement;
 
 
     public void registerValid(String firstNameValue, String lastNameValue, String adressValue,String emailAdressValue,String phoneNumberValue,String skillValue, String passwordElementValue,String confirmPasswordValue){

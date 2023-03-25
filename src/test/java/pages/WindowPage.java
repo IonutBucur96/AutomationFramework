@@ -11,7 +11,7 @@ import java.util.List;
 
 public class WindowPage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public WindowPage(WebDriver driver) {
         this.driver = driver;
@@ -19,13 +19,13 @@ public class WindowPage {
     }
 
     @FindBy(css = ".nav-stacked>li>a")
-    public List<WebElement> tabWindowOptions;
+    private List<WebElement> tabWindowOptions;
     @FindBy(css = "#Tabbed>a>button")
-    public WebElement clickTab;
+    private WebElement clickTab;
     @FindBy(css = "#Seperate>button")
-    public WebElement clickWindow;
+    private WebElement clickWindow;
     @FindBy(css = "#Multiple>button")
-    public WebElement clickMultiple;
+    private WebElement clickMultiple;
 
     public void dealSingleTab(){
         tabWindowOptions.get(0).click();

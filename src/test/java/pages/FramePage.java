@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FramePage {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public FramePage(WebDriver driver) {
         this.driver = driver;
@@ -18,11 +18,11 @@ public class FramePage {
     }
 
     @FindBy(css = ".nav-tabs>li>a")
-    public List<WebElement> frameOptions;
+    private List<WebElement> frameOptions;
     @FindBy(css = "input[type='text']")
-    public WebElement inputSingleFrame;
+    private WebElement inputSingleFrame;
     @FindBy(css = "input[type='text']")
-    public WebElement inputMultipleFrame;
+    private WebElement inputMultipleFrame;
 
     public void dealSingleFrame(String singleValue){
         frameOptions.get(0).click();
