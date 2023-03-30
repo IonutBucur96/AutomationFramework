@@ -9,14 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowPage {
+public class WindowPage extends BasePage{
+
+    public WindowPage(WebDriver driver) {
+        super(driver);
+    }
 
     private WebDriver driver;
 
-    public WindowPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(css = ".nav-stacked>li>a")
     private List<WebElement> tabWindowOptions;
@@ -26,6 +26,8 @@ public class WindowPage {
     private WebElement clickWindow;
     @FindBy(css = "#Multiple>button")
     private WebElement clickMultiple;
+
+
 
     public void dealSingleTab(){
         tabWindowOptions.get(0).click();

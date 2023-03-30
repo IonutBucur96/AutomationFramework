@@ -7,14 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class SignInPage {
+public class SignInPage extends BasePage {
+
+    public SignInPage(WebDriver driver) {
+        super(driver);
+    }
 
     private WebDriver driver;
 
-    public SignInPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+
 
     @FindBy(css = "input[placeholder='E mail']")
     private WebElement emailElement;
@@ -24,6 +25,7 @@ public class SignInPage {
     private WebElement enterElement;
     @FindBy(id = "errormsg")
     private WebElement errorElement;
+
 
     public void loginInvalid(String emailValue, String passwordValue, String expectedError){
         emailElement.sendKeys(emailValue);

@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -57,21 +54,26 @@ public class RegisterPage extends BasePage {
     private WebElement submitElement;
 
 
-    public void registerValid(String firstNameValue, String lastNameValue, String adressValue,String emailAdressValue,String phoneNumberValue,String skillValue, String passwordElementValue,String confirmPasswordValue){
+    public void registerValid(String firstNameValue, String lastNameValue, String adressValue,String emailAdressValue,String phoneNumberValue,String skillValue,Integer yearValue,String monthValue, String passwordElementValue,String confirmPasswordValue){
         firstName.sendKeys(firstNameValue);
         lastName.sendKeys(lastNameValue);
         adress.sendKeys(adressValue);
         emailAdress.sendKeys(emailAdressValue);
         phoneNumber.sendKeys(phoneNumberValue);
         maleGender.click();
-
         hobbyElement.click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,650)", "");
         languageElement.click();
         Select skillsSelect = new Select(skillsElement);
         skillsSelect.selectByVisibleText(skillValue);
-
+        Select yearSelect = new Select(yearElement);
+        yearSelect.selectByValue(String.valueOf(yearValue));
+        Select monthSelect = new Select(monthElement);
+        monthSelect.selectByVisibleText(monthValue);
+        selectCountryElement.click();
+        selectCountryInputElement.sendKeys("India");
+        selectCountryInputElement.sendKeys(Keys.ENTER);
         passwordElement.sendKeys(passwordElementValue);
         confirmPassword.sendKeys(confirmPasswordValue);
         submitElement.click();

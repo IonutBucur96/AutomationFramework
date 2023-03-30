@@ -32,7 +32,7 @@ public class RegisterTest extends SharedData {
         Assert.assertEquals(actualTitleRegister, expectedTitleRegister);
 
         RegisterPage registerPage = new RegisterPage(getDriver());
-        registerPage.registerValid("Ionut", "Bucur","Bucegi 13", "ionutbucur@yahoo.com","123456789","Java","Uclujnapoca","Uclujnapoca");
+        registerPage.registerValid("Ionut", "Bucur","Bucegi 13", "ionutbucur@yahoo.com","123456789","Java",1996,"January","Uclujnapoca","Uclujnapoca");
 
 
 //        String expectedLanguage="Dutch";
@@ -45,24 +45,6 @@ public class RegisterTest extends SharedData {
 //                languageOptions.get(index).click();
 //            }
 //        }
-
-//        WebElement skillsElement = driver.findElement(By.id("Skills"));
-//        Select skillsSelect = new Select(skillsElement);
-//        skillsSelect.selectByVisibleText("Java");
-//
-//        WebElement yearElement = driver.findElement(By.id("yearbox"));
-//        Select yearSelect = new Select(yearElement);
-//        yearSelect.selectByValue("1996");
-//
-//        WebElement monthElement = driver.findElement(By.cssSelector("select[placeholder='Month']"));
-//        Select monthSelect = new Select(monthElement);
-//        monthSelect.selectByVisibleText("January");
-//
-//        WebElement selectCountryElement = driver.findElement(By.cssSelector(".select2-selection"));
-//        selectCountryElement.click();
-//        WebElement selectCountryInputElement = driver.findElement(By.className("select2-search__field"));
-//        selectCountryInputElement.sendKeys("India");
-//        selectCountryInputElement.sendKeys(Keys.ENTER);
 
     }
 }

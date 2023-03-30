@@ -8,14 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class FramePage {
+public class FramePage extends BasePage {
+
+    public FramePage (WebDriver driver) {
+        super(driver);
+    }
 
     private WebDriver driver;
-
-    public FramePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(css = ".nav-tabs>li>a")
     private List<WebElement> frameOptions;
@@ -23,6 +22,7 @@ public class FramePage {
     private WebElement inputSingleFrame;
     @FindBy(css = "input[type='text']")
     private WebElement inputMultipleFrame;
+
 
     public void dealSingleFrame(String singleValue){
         frameOptions.get(0).click();
