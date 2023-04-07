@@ -1,5 +1,6 @@
 package pages;
 
+import objectData.FrameObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +13,8 @@ public class FramePage extends BasePage {
 
     public FramePage (WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("Frames");
     }
-
-    private WebDriver driver;
 
     @FindBy(css = ".nav-tabs>li>a")
     private List<WebElement> frameOptions;
@@ -24,17 +24,17 @@ public class FramePage extends BasePage {
     private WebElement inputMultipleFrame;
 
 
-    public void dealSingleFrame(String singleValue){
+    public void dealSingleFrame(FrameObject frameObject){
         frameOptions.get(0).click();
-        driver.switchTo().frame("singleframe");
-        inputSingleFrame.sendKeys(singleValue);
-        driver.switchTo().defaultContent();
+        frameMethods.switchToFrame("singleframe");
+        inputSingleFrame.sendKeys(frameObject.getSingleFrame());
+        frameMethods.switchDefault();
     }
 
-    public void dealMultipleFrame(String multipleValue){
+    public void dealMultipleFrame(FrameObject frameObject){
         frameOptions.get(1).click();
-        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[src='MultipleFrames.html']")));
-        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[src='SingleFrame.html']")));
-        inputMultipleFrame.sendKeys(multipleValue);
+        frameMethods.switchToFrame(driver.findElement(By.cssSelector("iframe[src='MultipleFrames.html']")));
+        frameMethods.switchToFrame(driver.findElement(By.cssSelector("iframe[src='SingleFrame.html']")));
+        inputMultipleFrame.sendKeys(frameObject.getMultipleFrame());
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import objectData.AlertObject;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,7 @@ public class AlertPage extends BasePage{
 
     public AlertPage(WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("Alerts");
     }
 
     @FindBy(css = ".nav-stacked>li>a")
@@ -27,22 +29,18 @@ public class AlertPage extends BasePage{
     public void dealAlertOk(){
         alertOptions.get(0).click();
         clickAlertOkElement.click();
-        Alert alertOk = driver.switchTo().alert();
-        alertOk.accept();
+        alertMethods.acceptAlert();
     }
 
     public void dealAlertOkCancel(){
         alertOptions.get(1).click();
         clickOkCancelElement.click();
-        Alert alertOkCancel = driver.switchTo().alert();
-        alertOkCancel.dismiss();
+        alertMethods.cancelAlert();
     }
 
-    public void dealAlertText(String alertValue){
+    public void dealAlertText(AlertObject alertObject){
         alertOptions.get(2).click();
         clickTextElement.click();
-        Alert alertText = driver.switchTo().alert();
-        alertText.sendKeys(alertValue);
-        alertText.accept();
+        alertMethods.acceptFillAlert(alertObject.getAlertValue());
     }
 }

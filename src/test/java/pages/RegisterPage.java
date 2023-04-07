@@ -6,10 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class RegisterPage extends BasePage {
 
     public RegisterPage(WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("Register");
     }
 
     @FindBy(xpath = "//a[text()='SwitchTo']")
@@ -52,9 +55,13 @@ public class RegisterPage extends BasePage {
     private WebElement confirmPassword;
     @FindBy (id = "submitbtn")
     private WebElement submitElement;
+    @FindBy(css = ".ui-menu>li>a")
+    private List<WebElement> languageOptions;
 
 
-    public void registerValid(String firstNameValue, String lastNameValue, String adressValue,String emailAdressValue,String phoneNumberValue,String skillValue,Integer yearValue,String monthValue, String passwordElementValue,String confirmPasswordValue){
+    public void registerValid(String firstNameValue, String lastNameValue, String adressValue,
+                              String emailAdressValue,String phoneNumberValue,String skillValue,String yearValue,
+                              String monthValue, String passwordElementValue,String confirmPasswordValue, List<String> languageValues){
         firstName.sendKeys(firstNameValue);
         lastName.sendKeys(lastNameValue);
         adress.sendKeys(adressValue);
@@ -62,42 +69,49 @@ public class RegisterPage extends BasePage {
         phoneNumber.sendKeys(phoneNumberValue);
         maleGender.click();
         hobbyElement.click();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,650)", "");
+
+        pageMethods.scrollPage(0,650);
+
         languageElement.click();
-        Select skillsSelect = new Select(skillsElement);
-        skillsSelect.selectByVisibleText(skillValue);
-        Select yearSelect = new Select(yearElement);
-        yearSelect.selectByValue(String.valueOf(yearValue));
-        Select monthSelect = new Select(monthElement);
-        monthSelect.selectByVisibleText(monthValue);
+        selectLanguage(languageValues);
+
+        elementMethods.selectElementByText(skillsElement, skillValue);
+        elementMethods.selectElementByValue(yearElement, yearValue);
+        elementMethods.selectElementByText(monthElement, monthValue);
+
         selectCountryElement.click();
         selectCountryInputElement.sendKeys("India");
         selectCountryInputElement.sendKeys(Keys.ENTER);
         passwordElement.sendKeys(passwordElementValue);
         confirmPassword.sendKeys(confirmPasswordValue);
         submitElement.click();
+    }
 
+    public void selectLanguage(List<String> languages){
+        for (Integer index = 0; index<languageOptions.size();index++){
+            //trebuie sa iau textul de pe un element
+            String actualLanguage = languageOptions.get(index).getText();
+            if (languages.contains(actualLanguage)){
+                languageOptions.get(index).click();
+            }
+        }
     }
 
     public void goToFramePage(){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(switchToElement).perform();
+        elementMethods.moveToElement(switchToElement);
         frameElement.click();
-        driver.navigate().to("https://demo.automationtesting.in/Frames.html");
+        pageMethods.navigateToUrl("https://demo.automationtesting.in/Frames.html");
     }
 
     public void goToWindowPage(){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(switchToElement).perform();
+        elementMethods.moveToElement(switchToElement);
         windowsElement.click();
-        driver.navigate().to("https://demo.automationtesting.in/Windows.html");
+        pageMethods.navigateToUrl("https://demo.automationtesting.in/Windows.html");
     }
 
     public void goToAlertPage(){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(switchToElement).perform();
+        elementMethods.moveToElement(switchToElement);
         alertsElement.click();
-        driver.navigate().to("https://demo.automationtesting.in/Alerts.html");
+        pageMethods.navigateToUrl("https://demo.automationtesting.in/Alerts.html");
     }
 }

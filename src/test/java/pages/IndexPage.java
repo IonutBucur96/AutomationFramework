@@ -8,6 +8,7 @@ public class IndexPage extends BasePage {
 
     public IndexPage(WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("Index");
     }
 
     @FindBy(id = "btn1")
@@ -16,10 +17,10 @@ public class IndexPage extends BasePage {
     private WebElement skipSignIn;
 
     public void clickSignIn(){
-        signInElement.click();
+        elementMethods.clickElement(signInElement);
     }
 
     public void clickSkipSignIn(){
-        skipSignIn.click();
+        elementMethods.clickElement(skipSignIn);
     }
 }

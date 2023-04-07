@@ -1,6 +1,7 @@
 package tests;
 
-import org.testng.Assert;
+import objectData.FrameObject;
+import objectData.LoginObject;
 import org.testng.annotations.Test;
 import pages.FramePage;
 import pages.IndexPage;
@@ -11,26 +12,16 @@ public class FrameTest extends SharedData {
 
     @Test
     public void metodaTest() {
-        String expectedTitleIndex = "Index";
-        String actualTitleIndex = getDriver().getTitle();
-        Assert.assertEquals(actualTitleIndex, expectedTitleIndex);
+        FrameObject frameObject = new FrameObject(getPropertiesUtility().getAllData());
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSkipSignIn();
 
-        String expectedTitleRegister = "Register";
-        String actualTitleRegister = getDriver().getTitle();
-        Assert.assertEquals(actualTitleRegister, expectedTitleRegister);
-
         RegisterPage registerPage = new RegisterPage(getDriver());
         registerPage.goToFramePage();
 
-        String expectedTitleFrames = "Frames";
-        String actualTitleFrames = getDriver().getTitle();
-        Assert.assertEquals(actualTitleFrames, expectedTitleFrames);
-
         FramePage framePage = new FramePage(getDriver());
-        framePage.dealSingleFrame("Ionut");
-        framePage.dealMultipleFrame("Bucur");
+        framePage.dealSingleFrame(frameObject);
+        framePage.dealMultipleFrame(frameObject);
     }
 }

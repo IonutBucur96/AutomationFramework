@@ -13,6 +13,7 @@ public class WindowPage extends BasePage{
 
     public WindowPage(WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("Frames & windows");
     }
 
     private WebDriver driver;
@@ -32,33 +33,26 @@ public class WindowPage extends BasePage{
     public void dealSingleTab(){
         tabWindowOptions.get(0).click();
         clickTab.click();
-        System.out.println(driver.getTitle());
-        List<String> tabList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabList.get(1));
-        System.out.println(driver.getTitle());
-        driver.close();
-        driver.switchTo().window(tabList.get(0));
+        tabWindowMethods.switchTabWindowByIndex(1);
+        tabWindowMethods.closeCurrentTabWindow();
+        tabWindowMethods.switchTabWindowByIndex(0);
     }
 
     public void dealSingleWindow(){
         tabWindowOptions.get(1).click();
         clickWindow.click();
-        List<String> windowList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowList.get(1));
-        System.out.println(driver.getTitle());
-        driver.close();
-        driver.switchTo().window(windowList.get(0));
+        tabWindowMethods.switchTabWindowByIndex(1);
+        tabWindowMethods.closeCurrentTabWindow();
+        tabWindowMethods.switchTabWindowByIndex(0);
     }
 
     public void dealMultipleTabs(){
         tabWindowOptions.get(2).click();
         clickMultiple.click();
-        List<String> multipleList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(multipleList.get(2));
-        System.out.println(driver.getTitle());
-        driver.close();
-        driver.switchTo().window(multipleList.get(1));
-        driver.close();
-        driver.switchTo().window(multipleList.get(0));
+        tabWindowMethods.switchTabWindowByIndex(2);
+        tabWindowMethods.closeCurrentTabWindow();
+        tabWindowMethods.switchTabWindowByIndex(1);
+        tabWindowMethods.closeCurrentTabWindow();
+        tabWindowMethods.switchTabWindowByIndex(0);
     }
 }

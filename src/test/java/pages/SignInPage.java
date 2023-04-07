@@ -1,5 +1,6 @@
 package pages;
 
+import objectData.LoginObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ public class SignInPage extends BasePage {
 
     public SignInPage(WebDriver driver) {
         super(driver);
+        pageMethods.validatePageTitle("SignIn");
     }
 
     private WebDriver driver;
@@ -27,11 +29,10 @@ public class SignInPage extends BasePage {
     private WebElement errorElement;
 
 
-    public void loginInvalid(String emailValue, String passwordValue, String expectedError){
-        emailElement.sendKeys(emailValue);
-        passwordElement.sendKeys(passwordValue);
-        enterElement.click();
-        String actualError = errorElement.getText();
-        Assert.assertEquals(actualError, expectedError);
+    public void loginInvalid(LoginObject loginObject){
+        elementMethods.fillElement(emailElement, loginObject.getLoginEmail());
+        elementMethods.fillElement(passwordElement, loginObject.getLoginPassword());
+        elementMethods.clickElement(enterElement);
+        elementMethods.validateElementText(errorElement, loginObject.getLoginErrorMessage());
     }
 }
