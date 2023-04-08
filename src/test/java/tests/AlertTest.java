@@ -1,8 +1,6 @@
 package tests;
 
 import objectData.AlertObject;
-import objectData.FrameObject;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AlertPage;
 import pages.IndexPage;

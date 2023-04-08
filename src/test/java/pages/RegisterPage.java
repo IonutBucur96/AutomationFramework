@@ -1,10 +1,10 @@
 package pages;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import objectData.RegisterObject;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -59,31 +59,29 @@ public class RegisterPage extends BasePage {
     private List<WebElement> languageOptions;
 
 
-    public void registerValid(String firstNameValue, String lastNameValue, String adressValue,
-                              String emailAdressValue,String phoneNumberValue,String skillValue,String yearValue,
-                              String monthValue, String passwordElementValue,String confirmPasswordValue, List<String> languageValues){
-        firstName.sendKeys(firstNameValue);
-        lastName.sendKeys(lastNameValue);
-        adress.sendKeys(adressValue);
-        emailAdress.sendKeys(emailAdressValue);
-        phoneNumber.sendKeys(phoneNumberValue);
+    public void registerValid(RegisterObject registerObject){
+        firstName.sendKeys(registerObject.getFirstNameValue());
+        lastName.sendKeys(registerObject.getLastNameValue());
+        adress.sendKeys(registerObject.getAddressValue());
+        emailAdress.sendKeys(registerObject.getEmailValue());
+        phoneNumber.sendKeys(registerObject.getPhoneValue());
         maleGender.click();
         hobbyElement.click();
 
         pageMethods.scrollPage(0,650);
 
         languageElement.click();
-        selectLanguage(languageValues);
+        selectLanguage(registerObject.getLanguageValues());
 
-        elementMethods.selectElementByText(skillsElement, skillValue);
-        elementMethods.selectElementByValue(yearElement, yearValue);
-        elementMethods.selectElementByText(monthElement, monthValue);
+        elementMethods.selectElementByText(skillsElement, registerObject.getSkillValue());
+        elementMethods.selectElementByValue(yearElement, registerObject.getYearValue());
+        elementMethods.selectElementByText(monthElement, registerObject.getMonthValue());
 
         selectCountryElement.click();
         selectCountryInputElement.sendKeys("India");
         selectCountryInputElement.sendKeys(Keys.ENTER);
-        passwordElement.sendKeys(passwordElementValue);
-        confirmPassword.sendKeys(confirmPasswordValue);
+        passwordElement.sendKeys(registerObject.getPasswordValue());
+        confirmPassword.sendKeys(registerObject.getConfirmPasswordValue());
         submitElement.click();
     }
 

@@ -1,11 +1,10 @@
 package tests;
 
+import objectData.RegisterObject;
 import org.testng.annotations.Test;
 import pages.IndexPage;
 import pages.RegisterPage;
 import sharedData.SharedData;
-
-import java.util.Arrays;
 
 public class RegisterTest extends SharedData {
 
@@ -15,12 +14,12 @@ public class RegisterTest extends SharedData {
 
     @Test
     public void metodaTest() {
+        RegisterObject registerObject = new RegisterObject(getPropertiesUtility().getAllData());
+
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSkipSignIn();
 
         RegisterPage registerPage = new RegisterPage(getDriver());
-        registerPage.registerValid("Ionut", "Bucur","Bucegi 13",
-                "ionutbucur@yahoo.com","123456789","Java",
-                "1996","January","Uclujnapoca","Uclujnapoca", Arrays.asList("Dutch","English"));
+        registerPage.registerValid(registerObject);
     }
 }

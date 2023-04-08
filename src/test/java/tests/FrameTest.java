@@ -1,7 +1,6 @@
 package tests;
 
 import objectData.FrameObject;
-import objectData.LoginObject;
 import org.testng.annotations.Test;
 import pages.FramePage;
 import pages.IndexPage;
